@@ -286,9 +286,15 @@ async def ranger_etudiants_par_annee(year: int):
                 
             features = extraire_features_etudiant(student)
             
+            # Model-specific feature projections
+            exam_100 = features[1] * 10.0 if features[1] <= 10.0 else features[1]
+            features_reg = [features[0], exam_100, features[2], features[3]]
+            features_tree = [features[0], features[2], features[3]]
+            features_svm = [features[0], exam_100, features[2], features[4]]
+            
             # 1. Linear Regression Prediction
             try:
-                score_regression = modele_regression.predire(features)
+                score_regression = modele_regression.predire(features_reg)
                 if isinstance(score_regression, dict):
                     score_regression = score_regression.get('prediction', score_regression.get('score', 50.0))
                 score_regression = float(score_regression)
@@ -298,7 +304,7 @@ async def ranger_etudiants_par_annee(year: int):
             
             # 2. Decision Tree Prediction
             try:
-                score_arbre = modele_arbre.predire(features)
+                score_arbre = modele_arbre.predire(features_tree)
                 if isinstance(score_arbre, dict):
                     score_arbre = score_arbre.get('prediction', score_arbre.get('score', 50.0))
                 score_arbre = float(score_arbre)
@@ -310,7 +316,7 @@ async def ranger_etudiants_par_annee(year: int):
             
             # 3. SVM Prediction
             try:
-                score_svm = modele_svm.predire(features)
+                score_svm = modele_svm.predire(features_svm)
                 if isinstance(score_svm, dict):
                     classe = score_svm.get('classe', 1)
                     confiance = score_svm.get('confiance', 0.5)

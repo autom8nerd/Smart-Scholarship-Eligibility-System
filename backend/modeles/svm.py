@@ -98,7 +98,7 @@ class ModeleSVM:
         Predict candidate enrollment probability class.
         
         Args:
-            caracteristiques: Input feature vector
+            caracteristiques: Input feature vector [GPA, Exam Score, Income, Distance]
             
         Returns:
             dict: {'classe': int, 'confiance': float}
@@ -109,7 +109,35 @@ class ModeleSVM:
             if self.modele is None:
                 self._creer_modele_par_defaut()
             
-            X = np.array(caracteristiques).reshape(1, -1)
+            caract_arr = np.array(caracteristiques, dtype=float).flatten()
+            expected = 4
+            if self.scaler is not None and hasattr(self.scaler, 'n_features_in_'):
+                expected = self.scaler.n_features_in_
+            elif hasattr(self.modele, 'n_features_in_'):
+                expected = self.modele.n_features_in_
+            elif hasattr(self.modele, 'coef_'):
+                expected = self.modele.coef_.shape[1]
+                
+            # SVM expects [gpa, exam_score, revenu, distance]
+            if expected == 4:
+                if len(caract_arr) >= 5:
+                    # from [gpa, exam_score, revenu, dependants, distance] -> [gpa, exam, revenu, distance]
+                    caract_arr = np.array([caract_arr[0], caract_arr[1], caract_arr[2], caract_arr[4]])
+                elif len(caract_arr) == 3:
+                    exam_sc = caract_arr[0] * 10.0 if caract_arr[0] <= 10.0 else caract_arr[0]
+                    caract_arr = np.array([caract_arr[0], exam_sc, caract_arr[1], 25.0])
+            elif expected == 5:
+                if len(caract_arr) == 4:
+                    caract_arr = np.append(caract_arr, 25.0)
+            elif expected == 3:
+                if len(caract_arr) >= 4:
+                    caract_arr = np.array([caract_arr[0], caract_arr[2], caract_arr[3]])
+
+            # Normalize exam score if provided on 0-10 scale
+            if len(caract_arr) >= 2 and caract_arr[1] <= 10.0:
+                caract_arr[1] = caract_arr[1] * 10.0
+
+            X = caract_arr.reshape(1, -1)
             if self.scaler is not None:
                 X = self.scaler.transform(X)
             classe = int(self.modele.predict(X)[0])
@@ -118,7 +146,7 @@ class ModeleSVM:
                 probabilites = self.modele.predict_proba(X)[0]
                 confiance = float(np.max(probabilites))
             else:
-                confiance = 0.6
+                confiance = 0.80 if classe == 2 else 0.70 if classe == 1 else 0.55
             
             return {
                 'classe': max(0, min(2, classe)),
@@ -127,25 +155,30 @@ class ModeleSVM:
         except Exception as e:
             print(f"[✗] Error during SVM prediction: {e}")
             try:
+                gpa = float(caracteristiques[0]) if len(caracteristiques) > 0 else 7.0
                 if len(caracteristiques) >= 5:
-                    gpa, note_exam, revenu, dependants, distance = caracteristiques[:5]
-                elif len(caracteristiques) >= 4:
-                    gpa, note_exam, revenu, distance = caracteristiques[:4]
-                    dependants = 1
+                    note_exam = float(caracteristiques[1])
+                    revenu = float(caracteristiques[2])
+                    distance = float(caracteristiques[4])
+                elif len(caracteristiques) == 4:
+                    note_exam = float(caracteristiques[1])
+                    revenu = float(caracteristiques[2])
+                    distance = float(caracteristiques[3])
                 else:
-                    return {'classe': 1, 'confiance': 0.5}
+                    return {'classe': 1, 'confiance': 0.6}
             except Exception as ex:
                 logger.warning(f"Unable to extract fallback SVM features: {ex}")
-                return {'classe': 1, 'confiance': 0.5}
+                return {'classe': 1, 'confiance': 0.6}
             
-            score_complet = (gpa/10) * 40 + (note_exam/100) * 30 - (revenu/100000) * 20 - (distance/200) * 10
+            exam_100 = note_exam * 10.0 if note_exam <= 10.0 else note_exam
+            score_complet = (gpa/10.0) * 40.0 + (exam_100/100.0) * 30.0 + min(20.0, (revenu/100000.0) * 20.0) - min(20.0, (distance/150.0) * 20.0)
             
             if score_complet >= 60:
-                return {'classe': 2, 'confiance': 0.8}
+                return {'classe': 2, 'confiance': 0.82}
             elif score_complet >= 40:
-                return {'classe': 1, 'confiance': 0.65}
+                return {'classe': 1, 'confiance': 0.68}
             else:
-                return {'classe': 0, 'confiance': 0.5}
+                return {'classe': 0, 'confiance': 0.55}
     
     def _sauvegarder_modele(self):
         """Serialize and persist trained model and fitted scaler."""

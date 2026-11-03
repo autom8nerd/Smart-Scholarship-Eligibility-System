@@ -29,6 +29,7 @@ const AIRecommendationModal = ({ student, recommendations, onClose, isOpen }) =>
 
   const getCouleurDecision = (couleur) => {
     if (couleur === 'green') return 'bg-green-600 text-white';
+    if (couleur === 'blue') return 'bg-blue-600 text-white';
     if (couleur === 'yellow') return 'bg-yellow-500 text-white';
     return 'bg-red-600 text-white';
   };

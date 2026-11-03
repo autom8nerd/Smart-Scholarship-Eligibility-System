@@ -271,14 +271,14 @@ async def obtenir_recommandations_etudiant(id_etudiant: str) -> Dict[str, Any]:
         else:
             distance = float(etudiant.get("distance", 0) or 0)
         
-        # 1. Financial capacity scoring
-        caracteristiques_financieres = [gpa, note_examen, revenu, dependants, distance]
+        # 1. Financial capacity scoring (Model expects [gpa, exam_score, revenu, dependants])
+        caracteristiques_financieres = [gpa, note_examen, revenu, dependants]
         score_financier = modele_regression.predire(caracteristiques_financieres)
         
         niveaux_capacite = {
-            (0, 30): ("Low Capacity", "Student requires substantial financial assistance"),
-            (30, 60): ("Moderate Capacity", "Student would benefit from partial financial aid"),
-            (60, 100): ("High Capacity", "Student demonstrates solid financial self-sufficiency")
+            (0, 35): ("Low Capacity", "Student requires substantial financial assistance"),
+            (35, 65): ("Moderate Capacity", "Student would benefit from partial financial aid"),
+            (65, 101): ("High Capacity", "Student demonstrates solid financial self-sufficiency")
         }
         
         niveau_capacite = "Moderate Capacity"
@@ -289,8 +289,8 @@ async def obtenir_recommandations_etudiant(id_etudiant: str) -> Dict[str, Any]:
                 message_capacite = msg
                 break
         
-        # 2. Scholarship tier recommendation
-        caracteristiques_bourse = [gpa, note_examen, revenu, dependants, distance]
+        # 2. Scholarship tier recommendation (Model expects [gpa, revenu, dependants])
+        caracteristiques_bourse = [gpa, revenu, dependants]
         prediction_bourse = modele_arbre.predire(caracteristiques_bourse)
         
         types_bourse = {
@@ -305,8 +305,8 @@ async def obtenir_recommandations_etudiant(id_etudiant: str) -> Dict[str, Any]:
             ("None", 0, "Scholarship tier undetermined")
         )
         
-        # 3. Enrollment likelihood prediction
-        caracteristiques_inscription = [gpa, note_examen, revenu, dependants, distance]
+        # 3. Enrollment likelihood prediction (Model expects [gpa, exam_score, revenu, distance])
+        caracteristiques_inscription = [gpa, note_examen, revenu, distance]
         resultat_svm = modele_svm.predire(caracteristiques_inscription)
         prediction_inscription = resultat_svm['classe']
         confiance_inscription = resultat_svm['confiance']
@@ -320,16 +320,25 @@ async def obtenir_recommandations_etudiant(id_etudiant: str) -> Dict[str, Any]:
         niveau_inscription = niveaux_proba.get(prediction_inscription, "Unknown Probability")
         
         # 4. Multi-model synthesis
-        score_global = (score_financier / 100) * 0.3 + (prediction_bourse / 3) * 0.4 + (prediction_inscription / 2) * 0.3
+        merit_norm = min(1.0, max(0.0, gpa / 10.0))
+        need_norm = min(1.0, max(0.0, (100.0 - score_financier) / 100.0))
+        bourse_norm = prediction_bourse / 3.0
+        enrollment_norm = (prediction_inscription / 2.0)
         
-        if score_global >= 0.7 and type_bourse in ["Full", "Complète"]:
+        score_global = (merit_norm * 0.40) + (bourse_norm * 0.35) + (need_norm * 0.15) + (enrollment_norm * 0.10)
+        
+        if type_bourse in ["Full", "Complète"] and (score_global >= 0.65 or gpa >= 8.5):
             decision_globale = "Full Scholarship Recommended"
             couleur_decision = "green"
-            justification = f"Outstanding academic profile (GPA: {gpa:.2f}), significant financial need, and high enrollment probability. Highest committee priority."
-        elif score_global >= 0.5 or type_bourse in ["Partial", "Half", "Partielle", "Moitié"]:
+            justification = f"Outstanding academic profile (GPA: {gpa:.2f}), significant financial need, and high committee priority for full institutional sponsorship."
+        elif type_bourse in ["Half", "Moitié"] or (type_bourse in ["Full", "Complète"] and score_global < 0.65) or (gpa >= 8.0 and need_norm >= 0.35):
+            decision_globale = "Half Scholarship Recommended"
+            couleur_decision = "blue"
+            justification = f"Strong academic profile (GPA: {gpa:.2f}) with demonstrable financial need. Half tuition scholarship (50%) recommended."
+        elif type_bourse in ["Partial", "Partielle"] or score_global >= 0.35:
             decision_globale = "Partial Scholarship Recommended"
             couleur_decision = "yellow"
-            justification = f"Strong academic profile (GPA: {gpa:.2f}) with moderate financial burden. Partial scholarship allocation appropriate."
+            justification = f"Solid academic standing (GPA: {gpa:.2f}) with moderate financial need. Partial scholarship (25%) allocation appropriate."
         else:
             decision_globale = "No Scholarship Recommended"
             couleur_decision = "red"

@@ -44,8 +44,8 @@ class ModeleRegressionLineaire:
     def _creer_modele_par_defaut(self):
         """Instantiate default model with baseline coefficients."""
         self.modele = LinearRegression()
-        self.modele.coef_ = np.array([5.0, 0.3, -0.0001, -3.0, -0.05])
-        self.modele.intercept_ = 40.0
+        self.modele.coef_ = np.array([3.0, 0.25, 0.0003, -2.5])
+        self.modele.intercept_ = 25.0
     
     def entraîner(self, X_train, y_train):
         """
@@ -68,7 +68,7 @@ class ModeleRegressionLineaire:
         Predict financial capacity continuous score.
         
         Args:
-            caracteristiques: Input feature vector
+            caracteristiques: Input feature vector [GPA, Exam Score, Income, Dependents]
             
         Returns:
             float: Score bounded between 0 and 100
@@ -77,13 +77,50 @@ class ModeleRegressionLineaire:
             if self.modele is None:
                 self._creer_modele_par_defaut()
             
-            X = np.array(caracteristiques).reshape(1, -1)
+            caract_arr = np.array(caracteristiques, dtype=float).flatten()
+            expected = getattr(self.modele, 'n_features_in_', None)
+            if expected is None and hasattr(self.modele, 'coef_'):
+                expected = len(self.modele.coef_)
+            if expected is None:
+                expected = 4
+                
+            # If model expects 4 features: [gpa, exam_score, revenu, dependants]
+            if expected == 4:
+                if len(caract_arr) >= 5:
+                    caract_arr = caract_arr[:4]
+                elif len(caract_arr) == 3:
+                    exam_sc = caract_arr[0] * 10.0 if caract_arr[0] <= 10.0 else caract_arr[0]
+                    caract_arr = np.array([caract_arr[0], exam_sc, caract_arr[1], caract_arr[2]])
+            elif expected == 5:
+                if len(caract_arr) == 4:
+                    caract_arr = np.append(caract_arr, 25.0)
+                elif len(caract_arr) == 3:
+                    exam_sc = caract_arr[0] * 10.0 if caract_arr[0] <= 10.0 else caract_arr[0]
+                    caract_arr = np.array([caract_arr[0], exam_sc, caract_arr[1], caract_arr[2], 25.0])
+            elif expected == 3:
+                if len(caract_arr) >= 4:
+                    caract_arr = np.array([caract_arr[0], caract_arr[2], caract_arr[3]])
+            
+            # Normalize exam score if provided on 0-10 scale
+            if len(caract_arr) >= 2 and caract_arr[1] <= 10.0:
+                caract_arr[1] = caract_arr[1] * 10.0
+
+            X = caract_arr.reshape(1, -1)
             prediction = self.modele.predict(X)[0]
             
             return max(0.0, min(100.0, float(prediction)))
         except Exception as e:
             print(f"[✗] Error during prediction: {e}")
-            return 50.0
+            try:
+                gpa = float(caracteristiques[0]) if len(caracteristiques) > 0 else 7.0
+                revenu = float(caracteristiques[2]) if len(caracteristiques) > 2 else float(caracteristiques[1]) if len(caracteristiques) > 1 else 30000.0
+                dependants = float(caracteristiques[3]) if len(caracteristiques) > 3 else float(caracteristiques[2]) if len(caracteristiques) > 2 else 2.0
+                
+                inc_ratio = min(1.0, max(0.05, revenu / 80000.0))
+                cap_score = (inc_ratio * 70.0) - (dependants * 4.0) + ((gpa / 10.0) * 20.0) + 10.0
+                return max(5.0, min(95.0, round(cap_score, 1)))
+            except Exception:
+                return 50.0
     
     def _sauvegarder_modele(self):
         """Serialize and persist trained model weights."""
