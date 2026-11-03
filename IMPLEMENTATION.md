@@ -1,6 +1,6 @@
 # IMPLEMENTATION PLAN: COMPLETE REPO TRANSLATION & CONTAINERIZATION
 
-**Project:** Ancil AI — Smart Enrollment & Scholarship Decision Support System  
+**Project:** Smart Scholarship Eligibility System — Smart Enrollment & Scholarship Decision Support System  
 **Target Environment:** Python 3.11 (`uv` virtualenv), Node 18+ (React), MongoDB 7.0, Docker Compose  
 **Document Version:** 1.0.0  
 **Status:** Completed (Translation, Architecture, Documentation & Verification Completed)
@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary & Goals
 
-The objective of this project is to transform the Ancil AI codebase into a fully English, production-ready, containerized application while preserving all underlying machine learning logic, API schema contracts, and test suite integrity.
+The objective of this project is to transform the Smart Scholarship codebase into a fully English, production-ready, containerized application while preserving all underlying machine learning logic, API schema contracts, and test suite integrity.
 
 ### Primary Objectives:
 1. **Full English Localization**: Translate all user-facing UI text, modal dialogs, error messages, code comments, docstrings, and technical documentation from French to English.
@@ -118,7 +118,7 @@ The objective of this project is to transform the Ancil AI codebase into a fully
 
 ### 4.1 `docs/DOCUMENTATION.md`
 Translate the comprehensive 760-line technical manual into clear, structured English:
-1. **Introduction & System Mission**: Executive overview of Ancil AI.
+1. **Introduction & System Mission**: Executive overview of the system.
 2. **System Architecture**:
    * Client tier (React, Tailwind CSS, Chart.js, Recharts, Framer Motion).
    * Backend tier (FastAPI, Pydantic, Python-Jose, Passlib).
@@ -236,21 +236,21 @@ Update the root project README to English:
                                      v
                          +-----------------------+
                          |    Frontend Nginx     |
-                         |  (ancil_frontend:80)  |
+                         |  (scholarship_frontend:80)  |
                          +-----+-----------+-----+
                                |           |
             Static React Assets|           | Reverse Proxy (/api/)
                                |           v
                                |   +-----------------------+
                                |   |    FastAPI Backend    |
-                               |   |  (ancil_backend:8000) |
+                               |   |  (scholarship_backend:8000) |
                                |   +-----------+-----------+
                                |               |
                                |               | PyMongo Connection
                                |               v
                                |   +-----------------------+
                                +-->|        MongoDB        |
-                                   | (ancil_mongodb:27017) |
+                                   | (scholarship_mongodb:27017) |
                                    +-----------------------+
 ```
 
@@ -263,9 +263,9 @@ Update the root project README to English:
    ```powershell
    docker compose ps
    ```
-   * Ensure `ancil_mongodb` status is `healthy`.
-   * Ensure `ancil_backend` status is `healthy`.
-   * Ensure `ancil_frontend` status is `healthy`.
+   * Ensure `scholarship_mongodb` status is `healthy`.
+   * Ensure `scholarship_backend` status is `healthy`.
+   * Ensure `scholarship_frontend` status is `healthy`.
 3. **Log Audit**:
    ```powershell
    docker compose logs backend
@@ -314,7 +314,7 @@ Update the root project README to English:
   - [x] Create `.env`, `.env.example`, `backend/.env`, `backend/.env.example`
   - [x] Create `backend/Dockerfile` & `entrypoint.sh`
   - [x] Create `frontend/Dockerfile` & `nginx.conf`
-  - [x] Build Docker images (`ancil_ai-backend`, `ancil_ai-frontend`)
+  - [x] Build Docker images (`scholarship-backend`, `scholarship-frontend`)
 
 - [x] Step 1: Frontend Pages Translation
   - [x] Public Pages (`LandingPage.js`, `Details.js`, `Confidentiality.js`, `Login.js`, `StudentLogin.js`)

@@ -402,7 +402,7 @@ Outlying points distant from the margin exert zero influence on boundary geometr
 
 ## 4. Use Case Diagrams
 
-The Ancil AI platform addresses two primary user roles with isolated permission boundaries:
+The platform addresses two primary user roles with isolated permission boundaries:
 
 ### Student Applicant Role
 - ✅ Self-register via multi-step application form (Personal, Academic, Financial)

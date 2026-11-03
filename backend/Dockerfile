@@ -1,5 +1,5 @@
 # ==============================================================================
-# ANCIL AI - BACKEND DOCKERFILE
+# SMART SCHOLARSHIP ELIGIBILITY SYSTEM - BACKEND DOCKERFILE
 # ==============================================================================
 FROM python:3.11-slim
 

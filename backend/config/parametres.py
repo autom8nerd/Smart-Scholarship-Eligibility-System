@@ -1,5 +1,5 @@
 """
-Centralized Configuration Settings for Ancil AI
+Centralized Configuration Settings for Smart Scholarship Decision Support System
 Contains application constants, environment variables, and model configurations.
 """
 import os
@@ -95,7 +95,7 @@ FORMAT_JOURNAL = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 # ============================================================================
 # APPLICATION METADATA
 # ============================================================================
-NOM_APP = "Ancil AI — Smart Enrollment & Scholarship Decision Support System"
+NOM_APP = "Smart Enrollment & Scholarship Decision Support System"
 VERSION_APP = "1.0.0"
 DESCRIPTION_APP = "Intelligent admissions and scholarship allocation engine powered by machine learning to predict financial need, recommend scholarship tiers, and evaluate enrollment likelihood."
 

@@ -2,7 +2,7 @@
 """
 FastAPI Server Startup Script
 
-Launches the Ancil AI FastAPI server in production mode
+Launches the Smart Scholarship & Admission FastAPI server in production mode
 (without auto-reloading).
 """
 import uvicorn
@@ -10,7 +10,7 @@ import sys
 
 if __name__ == "__main__":
     print("=" * 70)
-    print("Starting Ancil AI — Smart Enrollment & Scholarship Decision Support System")
+    print("Starting Smart Enrollment & Scholarship Decision Support System")
     print("=" * 70)
     print("Interactive Documentation (Swagger): http://localhost:8000/docs")
     print("Alternative Documentation (ReDoc):   http://localhost:8000/redoc")

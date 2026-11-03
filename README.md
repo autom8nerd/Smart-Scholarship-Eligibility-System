@@ -1,4 +1,4 @@
-#  Smart Enrollment & Scholarship Decision Support System
+# Smart Enrollment & Scholarship Decision Support System
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
@@ -7,7 +7,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
 
-An intelligent admission and scholarship decision support system for Moroccan students, powered by Machine Learning. Ancil AI uses three independent ML models (Linear Regression, Decision Tree, and Support Vector Machine) to predict financial capacity, allocate scholarship tiers, and estimate candidate enrollment likelihood through an automated consensus-based ranking engine.
+An intelligent admission and scholarship decision support system for Moroccan students, powered by Machine Learning. The system uses three independent ML models (Linear Regression, Decision Tree, and Support Vector Machine) to predict financial capacity, allocate scholarship tiers, and estimate candidate enrollment likelihood through an automated consensus-based ranking engine.
 
 ---
 
@@ -22,21 +22,21 @@ An intelligent admission and scholarship decision support system for Moroccan st
                                       v
                           +-----------------------+
                           |    Frontend Nginx     |
-                          |  (ancil_frontend:80)  |
+                          | (scholarship_frontend)|
                           +-----+-----------+-----+
                                 |           |
              Static React Assets|           | Reverse Proxy (/api/)
                                 |           v
                                 |   +-----------------------+
                                 |   |    FastAPI Backend    |
-                                |   |  (ancil_backend:8000) |
+                                |   | (scholarship_backend) |
                                 |   +-----------+-----------+
                                 |               |
                                 |               | PyMongo Connection
                                 |               v
                                 |   +-----------------------+
                                 +-->|        MongoDB        |
-                                    | (ancil_mongodb:27017) |
+                                    | (scholarship_mongodb) |
                                     +-----------------------+
 ```
 
@@ -155,7 +155,7 @@ Configuration is loaded from `.env` in the root and `backend/.env`:
 | `NOM_BASE_DONNEES` | `admission_intelligente` | MongoDB database name |
 | `PORT_API` | `8000` | FastAPI HTTP listener port |
 | `HOTE_API` | `0.0.0.0` | API bind address |
-| `ADMIN_EMAIL` | `admin@ancil.ai` | Administrator login email |
+| `ADMIN_EMAIL` | `admin@admission.ma` | Administrator login email |
 | `ADMIN_PASSWORD` | `AdminPassword2026!` | Administrator login password |
 | `JWT_SECRET_KEY` | *(Generated 64-char hex)* | Secret key for JWT signing |
 | `REACT_APP_API_BASE_URL` | `http://localhost:8000/api/v1` | Frontend API client base URL |

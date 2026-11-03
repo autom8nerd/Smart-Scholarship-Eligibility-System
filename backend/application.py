@@ -1,5 +1,5 @@
 """
-FastAPI Main Application for Ancil AI Decision Support System
+FastAPI Main Application for Smart Enrollment & Scholarship Decision Support System
 
 This module configures and bootstraps the FastAPI application:
 - CORS middleware whitelist for frontend communications
@@ -58,7 +58,7 @@ async def evenement_demarrage():
     Application startup event handler.
     Initializes database indexes and preloads machine learning models.
     """
-    print("[▶] Starting Ancil AI — Smart Enrollment & Scholarship Decision Support System...")
+    print("[▶] Starting Smart Enrollment & Scholarship Decision Support System...")
     try:
         initialiser_bd()
         print("[✓] System fully operational and database connected!")
@@ -72,7 +72,7 @@ async def evenement_arret():
     Application shutdown event handler.
     Gracefully closes active database connections and frees resources.
     """
-    print("[◼] Shutting down Ancil AI system...")
+    print("[◼] Shutting down system...")
     fermer_bd()
     print("[✓] System shut down cleanly.")
 

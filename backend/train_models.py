@@ -256,7 +256,7 @@ def main():
     Main orchestration entrypoint for training pipeline.
     """
     print("\n" + "=" * 80)
-    print("ANCIL AI MACHINE LEARNING TRAINING PIPELINE")
+    print("SMART SCHOLARSHIP MACHINE LEARNING TRAINING PIPELINE")
     print("=" * 80)
     
     chemins_possibles = [

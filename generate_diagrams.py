@@ -407,7 +407,7 @@ def create_usecase_diagram():
                              edgecolor='black', facecolor='#E6F3FF', 
                              linewidth=2, linestyle='dashed')
     ax.add_patch(boundary)
-    ax.text(7, 8.7, 'Ancil AI Decision Support System', 
+    ax.text(7, 8.7, 'Decision Support System', 
            fontsize=11, ha='center', fontweight='bold')
     
     student_usecases = [

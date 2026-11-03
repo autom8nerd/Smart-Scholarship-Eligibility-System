@@ -1,5 +1,5 @@
 # ==============================================================================
-# ANCIL AI - FRONTEND DOCKERFILE (Multi-stage Build)
+# SMART SCHOLARSHIP ELIGIBILITY SYSTEM - FRONTEND DOCKERFILE (Multi-stage Build)
 # ==============================================================================
 
 # Stage 1: Build the React Application

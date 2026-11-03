@@ -2,7 +2,7 @@
 set -e
 
 echo "=========================================================="
-echo " Starting Ancil AI Backend Service..."
+echo " Starting Backend Service..."
 echo "=========================================================="
 
 # Wait for MongoDB to become ready
