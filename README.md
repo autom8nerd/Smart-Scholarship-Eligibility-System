@@ -1,4 +1,4 @@
-# Ancil AI — Smart Enrollment & Scholarship Decision Support System
+#  Smart Enrollment & Scholarship Decision Support System
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
