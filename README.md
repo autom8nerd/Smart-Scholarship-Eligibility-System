@@ -205,6 +205,15 @@ All 17 integration and unit tests utilize an isolated in-memory MongoDB mock (`m
 
 ---
 
+## 👥 Project Team & Credits
+
+- **Institution:** National Institute of Technology Hamirpur (NIT Hamirpur)
+- **Developed by:** Akash Mavi, Akshay Kumar, Akshita Sharma, Amit Kumar, Ancil
+- **Supervised by:** Dr. Sangeeta Sharma
+- **Academic Year:** 2025 – 2026
+
+---
+
 ## 📄 License
 
 Academic Project — *Smart Enrollment & Scholarship Decision Support System* (Academic Year 2025–2026).

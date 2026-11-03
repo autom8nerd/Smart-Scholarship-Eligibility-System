@@ -98,18 +98,30 @@ const Slide1 = () => {
           variants={itemVariants}
           className="bg-white/25 backdrop-blur-xl rounded-2xl p-5 sm:p-6 md:p-7 border border-white/40 shadow-2xl"
         >
+          <div className="text-center mb-4 pb-3 border-b border-white/20">
+            <p className="text-xs opacity-75 font-semibold uppercase tracking-wider mb-1">Institution</p>
+            <p className="font-bold text-white text-lg sm:text-xl md:text-2xl drop-shadow-lg tracking-wide">
+              National Institute of Technology Hamirpur (NIT Hamirpur)
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 text-white text-xs sm:text-sm md:text-base">
             <div className="text-center">
               <p className="text-xs opacity-70 mb-1.5 font-semibold uppercase">Developed by</p>
-              <p className="font-bold text-white text-base sm:text-lg md:text-xl drop-shadow-lg tracking-wide">Chouiref Salaheddine  Gabbadi Anas</p>
+              <p className="font-bold text-white text-sm sm:text-base md:text-lg drop-shadow-lg tracking-wide">
+                Akash Mavi, Akshay Kumar, Akshita Sharma, Amit Kumar, Ancil
+              </p>
             </div>
             <div className="text-center">
               <p className="text-xs opacity-70 mb-1.5 font-semibold uppercase">Supervised by</p>
-              <p className="font-bold text-white text-base sm:text-lg md:text-xl drop-shadow-lg tracking-wide">Mrs. Bouaich Salma</p>
+              <p className="font-bold text-white text-base sm:text-lg md:text-xl drop-shadow-lg tracking-wide">
+                Dr. Sangeeta Sharma
+              </p>
             </div>
             <div className="text-center">
               <p className="text-xs opacity-70 mb-1.5 font-semibold uppercase">Academic Year</p>
-              <p className="font-bold text-white text-base sm:text-lg md:text-xl drop-shadow-lg tracking-wide">2025 – 2026</p>
+              <p className="font-bold text-white text-base sm:text-lg md:text-xl drop-shadow-lg tracking-wide">
+                2025 – 2026
+              </p>
             </div>
           </div>
         </motion.div>

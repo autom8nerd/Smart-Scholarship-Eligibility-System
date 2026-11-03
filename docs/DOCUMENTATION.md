@@ -517,5 +517,14 @@ Student User            React Frontend              FastAPI Backend             
 
 ---
 
-**📞 System Administration**: Antigravity Operations Team  
-**📅 Last Verification**: January 2026
+## 8. Project Credits & Acknowledgments
+
+- **Institution:** National Institute of Technology Hamirpur (NIT Hamirpur)
+- **Developed by:** Akash Mavi, Akshay Kumar, Akshita Sharma, Amit Kumar, Ancil
+- **Supervised by:** Dr. Sangeeta Sharma
+- **Academic Year:** 2025 – 2026
+
+---
+
+**📅 Academic Year**: 2025 – 2026  
+**🎓 Institution**: National Institute of Technology Hamirpur (NIT Hamirpur)

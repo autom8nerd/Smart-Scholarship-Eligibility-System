@@ -44,8 +44,15 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Smart Enrollment System. All rights reserved.</p>
+        <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm space-y-1.5">
+          <p className="text-gray-200 font-semibold">National Institute of Technology Hamirpur (NIT Hamirpur)</p>
+          <p className="text-gray-300">
+            Developed by: <span className="text-white font-medium">Akash Mavi, Akshay Kumar, Akshita Sharma, Amit Kumar, Ancil</span>
+          </p>
+          <p className="text-gray-300">
+            Supervised by: <span className="text-white font-medium">Dr. Sangeeta Sharma</span>
+          </p>
+          <p className="text-xs text-gray-500 pt-2">&copy; 2025–2026 Smart Enrollment &amp; Scholarship System. All rights reserved.</p>
         </div>
       </div>
     </footer>

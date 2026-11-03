@@ -207,9 +207,11 @@ const Slide15 = () => {
           </motion.div>
 
           {/* Contact Info */}
-          <motion.div variants={itemVariants} className="text-center text-white/70 text-xs sm:text-sm pb-6 sm:pb-8">
-            <p>Academic Year 2025 - 2026</p>
-            <p>Smart Enrollment & Scholarship System</p>
+          <motion.div variants={itemVariants} className="text-center text-white/80 text-xs sm:text-sm pb-6 sm:pb-8 space-y-1">
+            <p className="font-bold text-white text-sm sm:text-base">National Institute of Technology Hamirpur (NIT Hamirpur)</p>
+            <p className="text-white/90">Developed by: <span className="font-semibold text-white">Akash Mavi, Akshay Kumar, Akshita Sharma, Amit Kumar, Ancil</span></p>
+            <p className="text-white/90">Supervised by: <span className="font-semibold text-white">Dr. Sangeeta Sharma</span></p>
+            <p className="text-white/60 text-xs mt-2">Academic Year 2025 – 2026</p>
           </motion.div>
         </motion.div>
       </div>
