@@ -107,7 +107,7 @@ class ModeleArbreDecision:
                 logger.warning(f"Unable to extract fallback heuristic features: {ex}")
                 return 0
             
-            gpa_score = (gpa / 20.0) * 100
+            gpa_score = (gpa / 10.0) * 100
             financial_factor = max(0, (50000 - revenu) / 50000 * 100)
             dependant_factor = min(dependants * 15, 60)
             

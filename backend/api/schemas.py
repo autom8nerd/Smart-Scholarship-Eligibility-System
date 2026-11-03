@@ -45,13 +45,13 @@ class DonneesDiplome(BaseModel):
 
 class DonneesAcademiques(BaseModel):
     """Student academic performance metrics"""
-    gpa: float = Field(..., ge=0, le=20, description="Academic GPA score (scale 0-20)")
+    gpa: float = Field(..., ge=0, le=20, description="Academic GPA / CGPA score (scale 0-10)")
     noteExamen: float = Field(..., ge=0, le=100, description="Standardized test score (scale 0-100)")
 
     class Config:
         json_schema_extra = {
             "example": {
-                "gpa": 16.5,
+                "gpa": 8.5,
                 "noteExamen": 85
             }
         }
@@ -59,13 +59,13 @@ class DonneesAcademiques(BaseModel):
 
 class DonneesFianciales(BaseModel):
     """Student household financial profile"""
-    revenu: float = Field(..., ge=0, description="Annual household income (MAD)")
+    revenu: float = Field(..., ge=0, description="Annual household income (INR / ₹)")
     dependants: int = Field(..., ge=0, le=15, description="Number of family dependents")
 
     class Config:
         json_schema_extra = {
             "example": {
-                "revenu": 25000,
+                "revenu": 35000,
                 "dependants": 3
             }
         }

@@ -82,8 +82,8 @@ const Slide10 = () => {
           <div className="bg-white rounded-xl p-8 shadow-lg">
             <div className="space-y-6">
               {[
-                { level: 'Root Node', question: 'GPA > 14 ?', left: 'YES', right: 'NO' },
-                { level: 'Level 2', question: 'Income < 8,000 MAD ?', left: 'YES', right: 'NO' },
+                { level: 'Root Node', question: 'GPA > 7.5 (Scale 0-10) ?', left: 'YES', right: 'NO' },
+                { level: 'Level 2', question: 'Annual Income < ₹2,50,000 ?', left: 'YES', right: 'NO' },
                 { level: 'Level 3', question: 'Distance > 50 km ?', left: 'YES', right: 'NO' },
               ].map((item, idx) => (
                 <motion.div

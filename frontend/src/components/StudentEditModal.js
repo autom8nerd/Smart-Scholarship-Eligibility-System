@@ -172,9 +172,9 @@ export const StudentEditModal = ({
                 type="number"
                 step="0.01"
                 min="0"
-                max="20"
+                max="10"
                 name="notes_regionales"
-                placeholder="Regional Exam Grade (0-20) *"
+                placeholder="High School Score (Scale 0-10) *"
                 value={formData.notes_regionales}
                 onChange={handleChange}
                 required
@@ -184,9 +184,9 @@ export const StudentEditModal = ({
                 type="number"
                 step="0.01"
                 min="0"
-                max="20"
+                max="10"
                 name="note_generale"
-                placeholder="General Bac Grade (0-20) *"
+                placeholder="Qualifying Exam Grade (Scale 0-10) *"
                 value={formData.note_generale}
                 onChange={handleChange}
                 required
@@ -203,9 +203,9 @@ export const StudentEditModal = ({
                     type="number"
                     step="0.01"
                     min="0"
-                    max="20"
+                    max="10"
                     name="notes_diplome"
-                    placeholder="Diploma Grade (0-20) *"
+                    placeholder="Diploma CGPA (Scale 0-10) *"
                     required={formData.niveau_etude !== 'Baccalauréat'}
                     value={formData.notes_diplome}
                     onChange={handleChange}
@@ -232,7 +232,7 @@ export const StudentEditModal = ({
               <input
                 type="number"
                 name="revenu"
-                placeholder="Annual Income (MAD) *"
+                placeholder="Annual Family Income (₹) *"
                 value={formData.revenu}
                 onChange={handleChange}
                 required

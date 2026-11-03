@@ -175,7 +175,7 @@ async def obtenir_stats_modeles():
                 "etudiants_approuves": approved_students,
                 "etudiants_rejetes": rejected_students,
                 "etudiants_en_attente": pending_students,
-                "contexte": "Models are trained on Moroccan student records adhering to Moroccan academic standards"
+                "contexte": "Models are calibrated on standardized student records adhering to university academic criteria"
             },
             "models": {
                 "regression_lineaire": {
@@ -209,7 +209,7 @@ async def obtenir_stats_modeles():
             "features_explanation": {
                 "GPA": "Academic GPA score (regional + national baccalaureate average) / 2",
                 "Exam Score": "Standardized examination or higher diploma GPA score",
-                "Income": "Annual household family income in Dirhams (MAD) — financial need index",
+                "Income": "Annual household family income in Rupees (₹) — financial need index",
                 "Dependents": "Number of supported family dependents",
                 "Distance": "Commute distance to university campus in kilometers"
             }
@@ -344,7 +344,7 @@ async def ranger_etudiants_par_annee(year: int):
             else:
                 gpa = float(gpa_bac)
             
-            gpa_score = (gpa / 20) * 100
+            gpa_score = (gpa / 10) * 100
             
             # Combined priority score: 60% Academic GPA + 40% Financial Need
             priority_score = (gpa_score * 0.60) + (financial_need * 0.40)

@@ -48,7 +48,7 @@ def charger_donnees_reelles(chemin_csv, test_size=0.2):
     print(f"\nDataset Statistics:")
     print(f"  GPA: [{df['gpa'].min():.2f}, {df['gpa'].max():.2f}]")
     print(f"  Exam Score: [{df['exam_score'].min():.2f}, {df['exam_score'].max():.2f}]")
-    print(f"  Family Income: [{df['family_income'].min():.0f}, {df['family_income'].max():.0f}] MAD")
+    print(f"  Family Income: [{df['family_income'].min():.0f}, {df['family_income'].max():.0f}] ₹")
     print(f"  Dependents: [{df['dependents'].min():.0f}, {df['dependents'].max():.0f}]")
     print(f"  Distance: [{df['distance_km'].min():.2f}, {df['distance_km'].max():.2f}] km")
 

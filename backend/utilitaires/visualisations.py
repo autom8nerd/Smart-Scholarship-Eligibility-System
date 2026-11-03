@@ -169,21 +169,21 @@ class VisualiseurModeles:
         
         # GPA vs Income
         axes[0, 1].scatter(gpa_list, revenu_list, alpha=0.6, s=50, color='coral')
-        axes[0, 1].set_xlabel('GPA', fontweight='bold')
-        axes[0, 1].set_ylabel('Income (MAD)', fontweight='bold')
+        axes[0, 1].set_xlabel('GPA (0-10)', fontweight='bold')
+        axes[0, 1].set_ylabel('Income (₹)', fontweight='bold')
         axes[0, 1].set_title('GPA vs. Income', fontweight='bold')
         axes[0, 1].grid(True, alpha=0.3)
         
         # Income vs Dependents
         axes[1, 0].scatter(revenu_list, dependants_list, alpha=0.6, s=50, color='mediumseagreen')
-        axes[1, 0].set_xlabel('Income (MAD)', fontweight='bold')
+        axes[1, 0].set_xlabel('Income (₹)', fontweight='bold')
         axes[1, 0].set_ylabel('Number of Dependents', fontweight='bold')
         axes[1, 0].set_title('Income vs. Dependents', fontweight='bold')
         axes[1, 0].grid(True, alpha=0.3)
         
         # Income Distribution
         axes[1, 1].hist(revenu_list, bins=15, color='mediumpurple', edgecolor='black', alpha=0.7)
-        axes[1, 1].set_xlabel('Income (MAD)', fontweight='bold')
+        axes[1, 1].set_xlabel('Income (₹)', fontweight='bold')
         axes[1, 1].set_ylabel('Frequency', fontweight='bold')
         axes[1, 1].set_title('Household Income Distribution', fontweight='bold')
         axes[1, 1].grid(True, alpha=0.3, axis='y')

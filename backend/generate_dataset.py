@@ -1,7 +1,7 @@
 """
-Synthetic Dataset Generator for Moroccan Students
+Synthetic Dataset Generator for Students
 
-Generates a reproducible synthetic dataset of Moroccan students for training
+Generates a reproducible synthetic dataset of students for training
 the 3 machine learning models (Linear Regression, Decision Tree, SGD/SVM).
 
 Features and targets are calibrated with Gaussian noise to simulate real-world
@@ -47,16 +47,16 @@ def generer_dataset(n_lignes: int = 30_000, seed: int = SEED) -> pd.DataFrame:
     # ------------------------------------------------------------------
     # Features
     # ------------------------------------------------------------------
-    gpa = np.clip(rng.normal(12.5, 2.5, n_lignes), 4.0, 20.0)
+    gpa = np.clip(rng.normal(7.2, 1.4, n_lignes), 2.0, 10.0)
 
     # Correlated with GPA but containing unique noise (two distinct exams)
     exam_score = np.clip(
-        0.5 * (gpa / 20.0 * 100.0) + 0.5 * rng.normal(55, 18, n_lignes),
+        0.5 * (gpa / 10.0 * 100.0) + 0.5 * rng.normal(55, 18, n_lignes),
         0.0, 100.0,
     )
 
-    # Monthly household income in MAD: log-normal distribution
-    family_income = np.clip(rng.lognormal(mean=np.log(6000), sigma=0.65, size=n_lignes), 1200, 90_000)
+    # Monthly household income in INR (₹): log-normal distribution
+    family_income = np.clip(rng.lognormal(mean=np.log(25000), sigma=0.65, size=n_lignes), 5000, 300_000)
 
     dependents = np.clip(rng.poisson(2.2, n_lignes), 0, 8)
 
@@ -70,9 +70,9 @@ def generer_dataset(n_lignes: int = 30_000, seed: int = SEED) -> pd.DataFrame:
     # ------------------------------------------------------------------
     signal_financier = (
         20.0
-        + 1.2 * gpa
+        + 2.4 * gpa
         + 0.15 * exam_score
-        + 0.9 * (family_income / 1000.0)
+        + 0.25 * (family_income / 1000.0)
         - 3.0 * dependents
     )
     bruit_financier = rng.normal(0, 12, n_lignes)
@@ -82,10 +82,10 @@ def generer_dataset(n_lignes: int = 30_000, seed: int = SEED) -> pd.DataFrame:
     # Target 2 — scholarship_class (classification, 0-3)
     # Composite merit (GPA) + financial need (income, dependents)
     # ------------------------------------------------------------------
-    facteur_revenu = np.clip((20_000 - family_income) / 20_000 * 100.0, 0.0, 100.0)
+    facteur_revenu = np.clip((80_000 - family_income) / 80_000 * 100.0, 0.0, 100.0)
     facteur_dependants = np.clip(dependents * 12.0, 0.0, 100.0)
     composite_bourse = (
-        0.5 * (gpa / 20.0 * 100.0)
+        0.5 * (gpa / 10.0 * 100.0)
         + 0.3 * facteur_revenu
         + 0.2 * facteur_dependants
         + rng.normal(0, 15, n_lignes)
@@ -100,10 +100,10 @@ def generer_dataset(n_lignes: int = 30_000, seed: int = SEED) -> pd.DataFrame:
     # Target 3 — enrollment_probability_class (classification, 0-2)
     # Academic confidence + financial viability minus geographic distance friction
     # ------------------------------------------------------------------
-    facteur_revenu_inscription = np.clip(family_income / 30_000 * 100.0, 0.0, 100.0)
+    facteur_revenu_inscription = np.clip(family_income / 100_000 * 100.0, 0.0, 100.0)
     facteur_distance = np.clip(distance_km / 150.0 * 100.0, 0.0, 100.0)
     composite_inscription = (
-        0.30 * (gpa / 20.0 * 100.0)
+        0.30 * (gpa / 10.0 * 100.0)
         + 0.30 * exam_score
         + 0.20 * facteur_revenu_inscription
         - 0.20 * facteur_distance

@@ -47,15 +47,15 @@ ChartJS.register(
   ArcElement
 );
 
-// Helper function to calculate GPA from Moroccan standards
-const calculateMoroccanGPA = (student) => {
+// Helper function to calculate GPA on a 10-point scale
+const calculateGPA = (student) => {
   if (!student) return 0;
   
-  // Try to get from new Moroccan structure first
+  // Try to get from academic records
   const notesRegionales = parseFloat(student.donnees_baccalaureat?.notes_regionales) || 0;
   const noteGenerale = parseFloat(student.donnees_baccalaureat?.note_generale) || 0;
   
-  // If we have Moroccan data, calculate GPA
+  // If we have marks, calculate GPA
   if (notesRegionales > 0 || noteGenerale > 0) {
     const gpa = (notesRegionales + noteGenerale) / 2;
     return isNaN(gpa) ? 0 : gpa;
@@ -356,7 +356,7 @@ const AdminDashboard = ({ onLogout, user }) => {
     approved: students.filter(s => s.statut === 'Approuvé').length,
     pending: students.filter(s => s.statut === 'En attente').length,
     rejected: students.filter(s => s.statut === 'Rejeté').length,
-    avgGPA: students.length > 0 ? (students.reduce((sum, s) => sum + calculateMoroccanGPA(s), 0) / students.length).toFixed(2) : '0.00',
+    avgGPA: students.length > 0 ? (students.reduce((sum, s) => sum + calculateGPA(s), 0) / students.length).toFixed(2) : '0.00',
     scholarshipCount: students.filter(s => s.type_sponsorship && s.type_sponsorship !== 'None' && s.type_sponsorship !== 'Aucune').length,
   };
 
@@ -374,8 +374,8 @@ const AdminDashboard = ({ onLogout, user }) => {
     gpaDistribution: {
       labels: students.slice(0, 10).map(s => `${s?.prenom || 'N/A'}`),
       datasets: [{
-        label: 'Moroccan GPA',
-        data: students.slice(0, 10).map(s => calculateMoroccanGPA(s)),
+        label: 'CGPA (Scale 0-10)',
+        data: students.slice(0, 10).map(s => calculateGPA(s)),
         borderColor: '#8b5cf6',
         backgroundColor: 'rgba(139, 92, 246, 0.1)',
         borderWidth: 2,
@@ -1237,8 +1237,8 @@ const AdminDashboard = ({ onLogout, user }) => {
                             type="number"
                             step="0.01"
                             min="0"
-                            max="20"
-                            placeholder="Regional Exam Grade (0-20) *"
+                            max="10"
+                            placeholder="High School Score (Scale 0-10) *"
                             required
                             value={newStudent.notes_regionales}
                             onChange={(e) => setNewStudent({ ...newStudent, notes_regionales: parseFloat(e.target.value) })}
@@ -1248,8 +1248,8 @@ const AdminDashboard = ({ onLogout, user }) => {
                             type="number"
                             step="0.01"
                             min="0"
-                            max="20"
-                            placeholder="General Bac Grade (0-20) *"
+                            max="10"
+                            placeholder="Qualifying Exam Score (Scale 0-10) *"
                             required
                             value={newStudent.note_generale}
                             onChange={(e) => setNewStudent({ ...newStudent, note_generale: parseFloat(e.target.value) })}
@@ -1266,8 +1266,8 @@ const AdminDashboard = ({ onLogout, user }) => {
                                 type="number"
                                 step="0.01"
                                 min="0"
-                                max="20"
-                                placeholder="Diploma Grade (0-20) *"
+                                max="10"
+                                placeholder="Diploma CGPA (Scale 0-10) *"
                                 required={newStudent.niveau_etude !== 'Baccalauréat'}
                                 value={newStudent.notes_diplome}
                                 onChange={(e) => setNewStudent({ ...newStudent, notes_diplome: parseFloat(e.target.value) })}
@@ -1292,7 +1292,7 @@ const AdminDashboard = ({ onLogout, user }) => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <input
                             type="number"
-                            placeholder="Annual Income (MAD) *"
+                            placeholder="Annual Family Income (₹) *"
                             required
                             value={newStudent.revenu}
                             onChange={(e) => setNewStudent({ ...newStudent, revenu: parseFloat(e.target.value) })}
@@ -1384,7 +1384,7 @@ const AdminDashboard = ({ onLogout, user }) => {
                           </td>
                           <td className="px-4 py-2 text-gray-600 text-xs">{student?.email || 'N/A'}</td>
                           <td className="px-4 py-2">
-                            <span className="font-semibold text-blue-600 text-xs">{calculateMoroccanGPA(student).toFixed(2) || 'N/A'}</span>
+                            <span className="font-semibold text-blue-600 text-xs">{calculateGPA(student).toFixed(2) || 'N/A'}/10</span>
                           </td>
                           <td className="px-4 py-2">
                             <span className={`px-2 py-1 rounded text-xs font-semibold whitespace-nowrap inline-block ${

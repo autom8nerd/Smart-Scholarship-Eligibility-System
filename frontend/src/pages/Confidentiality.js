@@ -223,10 +223,10 @@ const Confidentiality = ({ isAuthenticated, userRole, onLogout }) => {
                 </div>
               </div>
               <div className="flex items-start space-x-4">
-                <div className="text-2xl">🇲🇦</div>
+                <div className="text-2xl">🇮🇳</div>
                 <div>
-                  <h4 className="font-bold text-blue-900 mb-2">Moroccan Law 09-08</h4>
-                  <p className="text-sm text-gray-700">Full compliance with Moroccan legislation on personal data protection</p>
+                  <h4 className="font-bold text-blue-900 mb-2">DPDP Act (India)</h4>
+                  <p className="text-sm text-gray-700">Compliance with the Digital Personal Data Protection Act and institutional data privacy regulations</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">

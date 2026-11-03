@@ -80,7 +80,7 @@ const Details = ({ isAuthenticated, userRole, onLogout }) => {
   const faqs = [
     {
       question: 'What are the minimum academic requirements?',
-      answer: 'A minimum overall grade of 12/20 on the Baccalaureate or equivalent. You must also demonstrate solid performance in core subjects such as mathematics and languages.'
+      answer: 'A minimum overall CGPA of 6.5 / 10 on transcripts or qualifying exams. You must also demonstrate solid performance in core subjects.'
     },
     {
       question: 'How is financial need evaluated?',
@@ -92,11 +92,11 @@ const Details = ({ isAuthenticated, userRole, onLogout }) => {
     },
     {
       question: 'Are scholarships renewable?',
-      answer: 'Yes, scholarships are renewed annually, provided the student maintains a minimum GPA of 11/20 and demonstrates satisfactory academic progress.'
+      answer: 'Yes, scholarships are renewed annually, provided the student maintains a minimum CGPA of 6.0 / 10 and demonstrates satisfactory academic progress.'
     },
     {
       question: 'Can international students apply?',
-      answer: 'Absolutely! We welcome students from North Africa, the Middle East, and worldwide. All eligible applicants may apply for scholarship support.'
+      answer: 'Yes! We welcome students from all regions. All eligible enrolled applicants may apply for scholarship support.'
     },
     {
       question: 'What is the application deadline?',

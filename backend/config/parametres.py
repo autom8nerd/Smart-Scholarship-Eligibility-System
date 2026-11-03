@@ -153,8 +153,8 @@ CONFIG_SVM = {
 # ============================================================================
 VALIDATION_GPA = {
     "min": 0.0,
-    "max": 20.0,
-    "description": "Academic GPA score (scale 0 to 20)"
+    "max": 10.0,
+    "description": "Academic GPA / CGPA score (scale 0 to 10)"
 }
 
 VALIDATION_EXAMEN = {

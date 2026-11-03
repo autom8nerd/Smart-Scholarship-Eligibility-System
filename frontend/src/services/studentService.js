@@ -48,7 +48,7 @@ const studentService = {
     }
   },
 
-  // Register student with new Moroccan education system
+  // Register student with educational credentials and GPA
   registerStudent: async (data) => {
     try {
       // Build the request payload with the new schema

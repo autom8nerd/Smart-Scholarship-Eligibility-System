@@ -367,14 +367,14 @@ const StudentProfile = ({ onLogout, user }) => {
                     <h3 className="text-lg font-bold text-blue-900 mb-4">Baccalaureate Data</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="bg-white p-4 rounded-lg">
-                        <p className="text-gray-600 text-sm font-semibold mb-1">Regional Exam Grade</p>
+                        <p className="text-gray-600 text-sm font-semibold mb-1">High School Score</p>
                         <p className="text-3xl font-bold text-blue-600">{studentData.donnees_baccalaureat.notes_regionales}</p>
-                        <p className="text-xs text-gray-600 mt-1">Out of 20</p>
+                        <p className="text-xs text-gray-600 mt-1">Scale of 10</p>
                       </div>
                       <div className="bg-white p-4 rounded-lg">
-                        <p className="text-gray-600 text-sm font-semibold mb-1">General Grade</p>
+                        <p className="text-gray-600 text-sm font-semibold mb-1">Qualifying Exam Score</p>
                         <p className="text-3xl font-bold text-blue-600">{studentData.donnees_baccalaureat.note_generale}</p>
-                        <p className="text-xs text-gray-600 mt-1">Out of 20</p>
+                        <p className="text-xs text-gray-600 mt-1">Scale of 10</p>
                       </div>
                       <div className="bg-white p-4 rounded-lg">
                         <p className="text-gray-600 text-sm font-semibold mb-1">Track / Major</p>
@@ -391,9 +391,9 @@ const StudentProfile = ({ onLogout, user }) => {
                     <h3 className="text-lg font-bold text-green-900 mb-4">Diploma Data</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white p-4 rounded-lg">
-                        <p className="text-gray-600 text-sm font-semibold mb-1">Diploma Grade</p>
+                        <p className="text-gray-600 text-sm font-semibold mb-1">Diploma CGPA</p>
                         <p className="text-3xl font-bold text-green-600">{studentData.donnees_diplome.notes_diplome}</p>
-                        <p className="text-xs text-gray-600 mt-1">Out of 20</p>
+                        <p className="text-xs text-gray-600 mt-1">Scale of 10</p>
                       </div>
                       <div className="bg-white p-4 rounded-lg">
                         <p className="text-gray-600 text-sm font-semibold mb-1">Specialty</p>
@@ -410,7 +410,7 @@ const StudentProfile = ({ onLogout, user }) => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <p className="text-gray-600 text-sm">Annual Family Income</p>
-                      <p className="font-semibold text-gray-900 text-lg">${studentData.donnees_financieres?.revenu?.toLocaleString() || 'N/A'}</p>
+                      <p className="font-semibold text-gray-900 text-lg">₹{studentData.donnees_financieres?.revenu?.toLocaleString() || 'N/A'}</p>
                     </div>
                     <div>
                       <p className="text-gray-600 text-sm">Number of Dependents</p>

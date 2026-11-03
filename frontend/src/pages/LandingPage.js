@@ -38,13 +38,13 @@ const LandingPage = ({ isAuthenticated, userRole, onLogout }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-block mb-4 px-4 py-2 bg-amber-500 bg-opacity-30 rounded-full border border-amber-300">
-                <span className="text-amber-200 font-semibold text-sm">🎓 Academic Excellence since 1950</span>
+                <span className="text-amber-200 font-semibold text-sm">🎓 Academic Excellence at NIT Hamirpur</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
                 Transform Your Future
               </h1>
               <p className="text-xl mb-8 text-blue-100 leading-relaxed">
-                Access an intelligent scholarship distribution system powered by machine learning. 100% sponsorship opportunities for qualified students in Morocco and worldwide.
+                Access an intelligent scholarship distribution system powered by machine learning. Merit and need-based scholarship opportunities for qualified students.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/student-register" className="flex items-center justify-center space-x-2 bg-gradient-to-r from-amber-400 to-amber-500 text-blue-900 hover:from-amber-300 hover:to-amber-400 px-8 py-3 rounded-lg font-bold transition transform hover:scale-105 shadow-lg">
@@ -57,17 +57,17 @@ const LandingPage = ({ isAuthenticated, userRole, onLogout }) => {
               </div>
             </div>
             <div className="relative hidden md:block">
-              {/* Moroccan Geometric Design */}
+              {/* Geometric Design */}
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-red-500 opacity-20 rounded-3xl transform rotate-6 blur-xl"></div>
               <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl shadow-2xl p-8 relative z-10 border-2 border-amber-200">
                 <div className="text-center">
                   <div className="text-7xl mb-4">🎓</div>
                   <h3 className="text-3xl font-bold text-blue-900 mb-2">100% Sponsorship</h3>
                   <div className="h-1 w-16 bg-gradient-to-r from-amber-500 to-red-500 mx-auto mb-4 rounded"></div>
-                  <p className="text-gray-700">For qualified students worldwide</p>
+                  <p className="text-gray-700">For qualified and meritorious students</p>
                   <div className="mt-6 text-sm text-gray-600">
                     <p className="font-semibold mb-2">Minimum Requirements:</p>
-                    <p>✓ Overall grade ≥ 12/20 (Baccalaureate)</p>
+                    <p>✓ Overall CGPA ≥ 6.5 / 10.0</p>
                     <p>✓ Demonstrated financial need</p>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ const LandingPage = ({ isAuthenticated, userRole, onLogout }) => {
             <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">About Our Institution</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-amber-500 to-red-500 mx-auto rounded mb-6"></div>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto font-medium">
-              Leader in educational excellence since 1950 - A bridge between tradition and modernity
+              Leader in technical education and research excellence at NIT Hamirpur
             </p>
           </div>
 
@@ -103,7 +103,7 @@ const LandingPage = ({ isAuthenticated, userRole, onLogout }) => {
                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Our Heritage</h3>
                 <div className="h-0.5 w-12 bg-amber-500 mb-4 rounded"></div>
                 <p className="text-gray-700 leading-relaxed">
-                  Established in 1950, our institution is inspired by Moroccan excellence and innovation. With over 70 years of experience, we have shaped tomorrow's leaders and innovators, anchored in societal values.
+                  Established in 1986, National Institute of Technology Hamirpur (NIT Hamirpur) is an institute of national importance committed to technical excellence, research, and societal impact.
                 </p>
               </div>
             </div>
@@ -129,7 +129,7 @@ const LandingPage = ({ isAuthenticated, userRole, onLogout }) => {
                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Our Vision</h3>
                 <div className="h-0.5 w-12 bg-amber-500 mb-4 rounded"></div>
                 <p className="text-gray-700 leading-relaxed">
-                  Become a globally recognized institution for academic excellence and research. Train ethical and responsible leaders who contribute to the progress of Morocco and the world.
+                  Become a globally recognized institution for academic excellence and innovation. Train ethical and responsible engineers and leaders who contribute to the progress of the nation and the world.
                 </p>
               </div>
             </div>
@@ -251,7 +251,7 @@ const LandingPage = ({ isAuthenticated, userRole, onLogout }) => {
                 <div className="border-l-4 border-blue-600 pl-6">
                   <h4 className="font-bold text-blue-900 mb-3 text-lg">📚 Academic Excellence</h4>
                   <p className="text-gray-700 leading-relaxed">
-                    Minimum overall score of <span className="font-semibold">12/20</span> on the Baccalaureate. Strong performance in mathematics and core subjects. For Bac+2 and higher: minimum <span className="font-semibold">11/20</span>.
+                    Minimum overall CGPA of <span className="font-semibold">6.5 / 10</span>. Strong performance in mathematics and core disciplines. For higher semesters: minimum <span className="font-semibold">6.0 / 10</span>.
                   </p>
                 </div>
                 <div className="border-l-4 border-amber-600 pl-6">
@@ -270,21 +270,21 @@ const LandingPage = ({ isAuthenticated, userRole, onLogout }) => {
               
               <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
                 <h4 className="font-bold text-blue-900 mb-4 flex items-center space-x-2">
-                  <span className="text-lg">🇲🇦</span>
-                  <span>Special Conditions for Moroccan Students</span>
+                  <span className="text-lg">🏛️</span>
+                  <span>Institutional Eligibility Guidelines</span>
                 </h4>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start space-x-2">
                     <span className="text-amber-500 font-bold">✓</span>
-                    <span>Moroccan citizenship or minimum 5 years permanent residency</span>
+                    <span>Enrolled full-time student in an approved degree program</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <span className="text-amber-500 font-bold">✓</span>
-                    <span>Recognized Moroccan Baccalaureate diploma or equivalent</span>
+                    <span>Valid standardized academic credentials and verified transcripts</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <span className="text-amber-500 font-bold">✓</span>
-                    <span>Priority consideration given to applicants from developing regions</span>
+                    <span>Priority consideration given to economically weaker sections and high achievers</span>
                   </li>
                 </ul>
               </div>

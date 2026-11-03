@@ -124,7 +124,7 @@ const AIRecommendationModal = ({ student, recommendations, onClose, isOpen }) =>
                     {recommandationBourse?.type}
                   </div>
                   <div className="text-center text-lg font-semibold opacity-80">
-                    {recommandationBourse?.montant > 0 ? `${recommandationBourse.montant.toLocaleString()} MAD` : 'N/A'}
+                    {recommandationBourse?.montant > 0 ? `₹${recommandationBourse.montant.toLocaleString()}` : 'N/A'}
                   </div>
                 </div>
                 <p className="text-sm leading-relaxed">
@@ -165,7 +165,7 @@ const AIRecommendationModal = ({ student, recommendations, onClose, isOpen }) =>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               <div className="bg-white rounded-lg p-3 text-center shadow-sm">
-                <div className="text-xs text-gray-600 mb-1">GPA</div>
+                <div className="text-xs text-gray-600 mb-1">GPA (0-10)</div>
                 <div className="text-lg font-bold text-gray-800">{details?.gpa?.toFixed(2)}</div>
               </div>
               <div className="bg-white rounded-lg p-3 text-center shadow-sm">
@@ -173,8 +173,8 @@ const AIRecommendationModal = ({ student, recommendations, onClose, isOpen }) =>
                 <div className="text-lg font-bold text-gray-800">{details?.noteExamen}</div>
               </div>
               <div className="bg-white rounded-lg p-3 text-center shadow-sm">
-                <div className="text-xs text-gray-600 mb-1">Income</div>
-                <div className="text-lg font-bold text-gray-800">{details?.revenu?.toLocaleString()}</div>
+                <div className="text-xs text-gray-600 mb-1">Family Income</div>
+                <div className="text-lg font-bold text-gray-800">₹{details?.revenu?.toLocaleString()}</div>
               </div>
               <div className="bg-white rounded-lg p-3 text-center shadow-sm">
                 <div className="text-xs text-gray-600 mb-1">Dependents</div>

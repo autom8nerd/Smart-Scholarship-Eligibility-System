@@ -57,11 +57,11 @@ class ModeleSVM:
         """Instantiate default model with baseline calibration data."""
         self.modele = SGDClassifier(loss='hinge', n_jobs=-1, random_state=42, n_iter_no_change=10, warm_start=False)
         X_dummy = np.array([
-            [18, 90, 5000, 10],
-            [18, 85, 5000, 20],
-            [12, 70, 30000, 50],
-            [10, 60, 50000, 80],
-            [10, 50, 100000, 100]
+            [9.0, 90, 20000, 10],
+            [8.5, 85, 25000, 20],
+            [7.0, 70, 45000, 50],
+            [5.5, 60, 60000, 80],
+            [5.0, 50, 100000, 100]
         ])
         y_dummy = np.array([2, 2, 1, 0, 0])
         try:
@@ -138,7 +138,7 @@ class ModeleSVM:
                 logger.warning(f"Unable to extract fallback SVM features: {ex}")
                 return {'classe': 1, 'confiance': 0.5}
             
-            score_complet = (gpa/20) * 40 + (note_exam/100) * 30 - (revenu/100000) * 20 - (distance/200) * 10
+            score_complet = (gpa/10) * 40 + (note_exam/100) * 30 - (revenu/100000) * 20 - (distance/200) * 10
             
             if score_complet >= 60:
                 return {'classe': 2, 'confiance': 0.8}

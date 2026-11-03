@@ -83,8 +83,8 @@ const MLRankingSystem = () => {
                     <p className="text-xs text-gray-600">{student.email}</p>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-gray-900 font-semibold">{student.gpa?.toFixed(2) || 'N/A'}</td>
-                <td className="px-4 py-3 text-gray-900">{student.revenu?.toLocaleString()} MAD</td>
+                <td className="px-4 py-3 text-gray-900 font-semibold">{student.gpa?.toFixed(2) || 'N/A'}/10</td>
+                <td className="px-4 py-3 text-gray-900">₹{student.revenu?.toLocaleString()}</td>
                 <td className="px-4 py-3 text-gray-900">{student.dependants}</td>
                 <td className="px-4 py-3 text-gray-900">
                   <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm font-medium">
@@ -657,7 +657,7 @@ const MLRankingSystem = () => {
                         <div className="bg-white p-3 rounded text-sm">
                           <p className="font-semibold text-gray-900 mb-2">Hyperspace Position:</p>
                           <div className="space-y-1 text-xs text-gray-700">
-                            <div>📊 Academic: {((selectedStudent.gpa / 20) * 100).toFixed(0)}%</div>
+                            <div>📊 Academic: {((selectedStudent.gpa / 10) * 100).toFixed(0)}% (GPA: {selectedStudent.gpa?.toFixed(2)}/10)</div>
                             <div>💰 Financial: {selectedStudent.revenu > 30000 ? 'Low need' : 'High need'}</div>
                             <div>👥 Dependents: {selectedStudent.dependants}</div>
                             <div>📍 Distance: {selectedStudent.distance} km</div>

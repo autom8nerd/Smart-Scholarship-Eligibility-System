@@ -68,18 +68,18 @@ const StudentRegister = ({ onLogin }) => {
   const validateStep2 = () => {
     const newErrors = {};
     
-    // Validate Baccalauréat data
-    if (!formData.notes_regionales || parseFloat(formData.notes_regionales) < 0 || parseFloat(formData.notes_regionales) > 20) {
-      newErrors.notes_regionales = 'Regional exam grade must be between 0 and 20';
+    // Validate Academic data
+    if (!formData.notes_regionales || parseFloat(formData.notes_regionales) < 0 || parseFloat(formData.notes_regionales) > 10) {
+      newErrors.notes_regionales = 'High school score must be between 0 and 10';
     }
-    if (!formData.note_generale || parseFloat(formData.note_generale) < 0 || parseFloat(formData.note_generale) > 20) {
-      newErrors.note_generale = 'General grade must be between 0 and 20';
+    if (!formData.note_generale || parseFloat(formData.note_generale) < 0 || parseFloat(formData.note_generale) > 10) {
+      newErrors.note_generale = 'Qualifying exam grade must be between 0 and 10';
     }
     
     // Validate Diplôme data if Bac+2 or above
     if (['Bac+2', 'Bac+3', 'Bac+4'].includes(formData.niveau_etude)) {
-      if (!formData.notes_diplome || parseFloat(formData.notes_diplome) < 0 || parseFloat(formData.notes_diplome) > 20) {
-        newErrors.notes_diplome = 'Diploma grade must be between 0 and 20';
+      if (!formData.notes_diplome || parseFloat(formData.notes_diplome) < 0 || parseFloat(formData.notes_diplome) > 10) {
+        newErrors.notes_diplome = 'Diploma grade must be between 0 and 10';
       }
       if (!formData.option_diplome.trim()) {
         newErrors.option_diplome = 'Diploma specialty is required';
@@ -377,12 +377,12 @@ const StudentRegister = ({ onLogin }) => {
               </form>
             )}
 
-            {/* Step 2: Academic Information (Moroccan System) */}
+            {/* Step 2: Academic Information */}
             {step === 2 && !success && (
               <form className="space-y-6">
                 <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
                   <p className="text-blue-900 text-sm">
-                    Fill in your academic information according to the Moroccan education system. Grades must be between 0 and 20.
+                    Fill in your academic information according to standard university GPA. Grades and CGPA must be on a scale of 0 to 10.
                   </p>
                 </div>
 
@@ -407,7 +407,7 @@ const StudentRegister = ({ onLogin }) => {
                   <h3 className="text-lg font-bold text-gray-900 mb-4">Baccalaureate Data</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="form-label">Regional Exam Grade (0-20) *</label>
+                      <label className="form-label">High School Grade (Scale 0-10) *</label>
                       <input
                         type="number"
                         name="notes_regionales"
@@ -415,15 +415,15 @@ const StudentRegister = ({ onLogin }) => {
                         onChange={handleChange}
                         step="0.01"
                         min="0"
-                        max="20"
+                        max="10"
                         className="form-input"
-                        placeholder="16.5"
+                        placeholder="8.5"
                       />
                       {errors.notes_regionales && <p className="text-red-600 text-sm mt-1">{errors.notes_regionales}</p>}
                     </div>
 
                     <div>
-                      <label className="form-label">General Grade (0-20) *</label>
+                      <label className="form-label">Qualifying Exam Grade (Scale 0-10) *</label>
                       <input
                         type="number"
                         name="note_generale"
@@ -431,15 +431,15 @@ const StudentRegister = ({ onLogin }) => {
                         onChange={handleChange}
                         step="0.01"
                         min="0"
-                        max="20"
+                        max="10"
                         className="form-input"
-                        placeholder="17.0"
+                        placeholder="8.8"
                       />
                       {errors.note_generale && <p className="text-red-600 text-sm mt-1">{errors.note_generale}</p>}
                     </div>
 
                     <div className="md:col-span-2">
-                      <label className="form-label">Baccalaureate Track *</label>
+                      <label className="form-label">High School Academic Stream *</label>
                       <select
                         name="option_bac"
                         value={formData.option_bac}
@@ -460,7 +460,7 @@ const StudentRegister = ({ onLogin }) => {
                     <h3 className="text-lg font-bold text-gray-900 mb-4">Diploma Data</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="form-label">Diploma Grade (0-20) *</label>
+                        <label className="form-label">Diploma CGPA (Scale 0-10) *</label>
                         <input
                           type="number"
                           name="notes_diplome"
@@ -468,9 +468,9 @@ const StudentRegister = ({ onLogin }) => {
                           onChange={handleChange}
                           step="0.01"
                           min="0"
-                          max="20"
+                          max="10"
                           className="form-input"
-                          placeholder="15.5"
+                          placeholder="8.0"
                         />
                         {errors.notes_diplome && <p className="text-red-600 text-sm mt-1">{errors.notes_diplome}</p>}
                       </div>
@@ -521,7 +521,7 @@ const StudentRegister = ({ onLogin }) => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="form-label">Annual Family Income (MAD) *</label>
+                    <label className="form-label">Annual Family Income (₹) *</label>
                     <input
                       type="number"
                       name="revenu"

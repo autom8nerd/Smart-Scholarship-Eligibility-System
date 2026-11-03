@@ -106,11 +106,11 @@ const Slide7 = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {[
-                    { feature: 'GPA', desc: 'Overall GPA', type: 'Numeric (0-20)' },
-                    { feature: 'Exam Score', desc: 'Academic entrance score', type: 'Numeric (0-20)' },
-                    { feature: 'Monthly Income', desc: 'Family income level', type: 'Numeric (MAD)' },
-                    { feature: 'Dependents', desc: 'Number of dependents', type: 'Integer' },
-                    { feature: 'Distance', desc: 'Distance in km', type: 'Numeric' },
+                    { feature: 'GPA', desc: 'Overall Academic CGPA', type: 'Numeric (0-10)' },
+                    { feature: 'Exam Score', desc: 'Academic entrance score', type: 'Numeric (0-100)' },
+                    { feature: 'Annual Income', desc: 'Family income level', type: 'Numeric (₹ INR)' },
+                    { feature: 'Dependents', desc: 'Number of family dependents', type: 'Integer' },
+                    { feature: 'Distance', desc: 'Distance to campus in km', type: 'Numeric' },
                   ].map((row, idx) => (
                     <tr key={idx} className="hover:bg-yellow-50 transition">
                       <td className="px-6 py-4 font-semibold text-gray-900">{row.feature}</td>

@@ -120,7 +120,7 @@ async def predire_recommandation_bourse(requete: RequeteRecommandationBourse):
         
         recommandation = types_bourses.get(classe_bourse, types_bourses[0])
         
-        message = f"Recommendation: {recommandation['nom']} based on GPA ({requete.donnees_academiques.gpa}), income ({requete.donnees_financieres.revenu} MAD), and dependents ({requete.donnees_financieres.dependants})"
+        message = f"Recommendation: {recommandation['nom']} based on GPA ({requete.donnees_academiques.gpa}), income (₹{requete.donnees_financieres.revenu}), and dependents ({requete.donnees_financieres.dependants})"
         
         try:
             collection_predictions = GestionnaireBD.obtenir_collection_predictions()
