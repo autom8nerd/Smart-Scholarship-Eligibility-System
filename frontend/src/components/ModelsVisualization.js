@@ -678,12 +678,12 @@ const ModelsVisualization = () => {
                             </tbody>
                           </table>
                         </div>
-                        <p className="text-xs text-slate-600 mt-4">✓ Ces {Math.min(rankingData.quota, rankingData.merged_ranking.top_candidates.length)} étudiants respectent le quota de {rankingData.quota} bourses pour l'année {rankingData.annee}</p>
+                        <p className="text-xs text-slate-600 mt-4">✓ These {Math.min(rankingData.quota, rankingData.merged_ranking.top_candidates.length)} students comply with the quota of {rankingData.quota} scholarships for year {rankingData.annee}</p>
                       </div>
                     </>
                   ) : (
                     <div className="text-center py-8 text-slate-600">
-                      Aucune donnée de classement disponible
+                      No ranking data available
                     </div>
                   )}
                 </div>

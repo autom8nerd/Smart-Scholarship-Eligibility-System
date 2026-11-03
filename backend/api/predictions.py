@@ -294,15 +294,15 @@ async def obtenir_recommandations_etudiant(id_etudiant: str) -> Dict[str, Any]:
         prediction_bourse = modele_arbre.predire(caracteristiques_bourse)
         
         types_bourse = {
-            0: ("Aucune", 0, "Academic profile or family income does not warrant scholarship aid"),
-            1: ("Partielle", 2500, "Partial scholarship (25%) recommended for minimal assistance"),
-            2: ("Partielle", 5000, "Partial scholarship (50%) recommended for moderate assistance"),
-            3: ("Complète", 10000, "Full scholarship (100%) recommended — high priority candidate")
+            0: ("None", 0, "Academic profile or family income does not warrant scholarship aid"),
+            1: ("Partial", 2500, "Partial scholarship (25%) recommended for minimal assistance"),
+            2: ("Half", 5000, "Half scholarship (50%) recommended for moderate assistance"),
+            3: ("Full", 10000, "Full scholarship (100%) recommended — high priority candidate")
         }
         
         type_bourse, montant_bourse, message_bourse = types_bourse.get(
             prediction_bourse,
-            ("Aucune", 0, "Scholarship tier undetermined")
+            ("None", 0, "Scholarship tier undetermined")
         )
         
         # 3. Enrollment likelihood prediction
@@ -322,11 +322,11 @@ async def obtenir_recommandations_etudiant(id_etudiant: str) -> Dict[str, Any]:
         # 4. Multi-model synthesis
         score_global = (score_financier / 100) * 0.3 + (prediction_bourse / 3) * 0.4 + (prediction_inscription / 2) * 0.3
         
-        if score_global >= 0.7 and type_bourse == "Complète":
+        if score_global >= 0.7 and type_bourse in ["Full", "Complète"]:
             decision_globale = "Full Scholarship Recommended"
             couleur_decision = "green"
             justification = f"Outstanding academic profile (GPA: {gpa:.2f}), significant financial need, and high enrollment probability. Highest committee priority."
-        elif score_global >= 0.5 or type_bourse == "Partielle":
+        elif score_global >= 0.5 or type_bourse in ["Partial", "Half", "Partielle", "Moitié"]:
             decision_globale = "Partial Scholarship Recommended"
             couleur_decision = "yellow"
             justification = f"Strong academic profile (GPA: {gpa:.2f}) with moderate financial burden. Partial scholarship allocation appropriate."

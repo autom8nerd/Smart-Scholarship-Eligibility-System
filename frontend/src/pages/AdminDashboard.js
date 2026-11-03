@@ -201,7 +201,7 @@ const AdminDashboard = ({ onLogout, user }) => {
     revenu: '',
     dependants: '',
     distance: '',
-    type_sponsorship: 'Complète',
+    type_sponsorship: 'Full',
   });
 
   // Load students
@@ -357,7 +357,7 @@ const AdminDashboard = ({ onLogout, user }) => {
     pending: students.filter(s => s.statut === 'En attente').length,
     rejected: students.filter(s => s.statut === 'Rejeté').length,
     avgGPA: students.length > 0 ? (students.reduce((sum, s) => sum + calculateMoroccanGPA(s), 0) / students.length).toFixed(2) : '0.00',
-    scholarshipCount: students.filter(s => s.type_sponsorship && s.type_sponsorship !== 'Aucune').length,
+    scholarshipCount: students.filter(s => s.type_sponsorship && s.type_sponsorship !== 'None' && s.type_sponsorship !== 'Aucune').length,
   };
 
   // Chart data
@@ -386,10 +386,10 @@ const AdminDashboard = ({ onLogout, user }) => {
       labels: ['None', 'Partial', 'Half', 'Full'],
       datasets: [{
         data: [
-          students.filter(s => s.type_sponsorship === 'Aucune').length,
-          students.filter(s => s.type_sponsorship === 'Partielle').length,
-          students.filter(s => s.type_sponsorship === 'Moitié').length,
-          students.filter(s => s.type_sponsorship === 'Complète').length,
+          students.filter(s => s.type_sponsorship === 'None' || s.type_sponsorship === 'Aucune').length,
+          students.filter(s => s.type_sponsorship === 'Partial' || s.type_sponsorship === 'Partielle').length,
+          students.filter(s => s.type_sponsorship === 'Half' || s.type_sponsorship === 'Moitié').length,
+          students.filter(s => s.type_sponsorship === 'Full' || s.type_sponsorship === 'Complète').length,
         ],
         backgroundColor: ['#94a3b8', '#fbbf24', '#60a5fa', '#34d399'],
         borderWidth: 2,
@@ -455,7 +455,7 @@ const AdminDashboard = ({ onLogout, user }) => {
         revenu: '',
         dependants: '',
         distance: '',
-        type_sponsorship: 'Complète',
+        type_sponsorship: 'Full',
       });
       setShowAddModal(false);
       setModal({
@@ -1328,10 +1328,10 @@ const AdminDashboard = ({ onLogout, user }) => {
                           className="form-input w-full md:w-1/2"
                           required
                         >
-                          <option value="Aucune">None (0%)</option>
-                          <option value="Partielle">Partial</option>
-                          <option value="Moitié">Half (50%)</option>
-                          <option value="Complète">Full (100%)</option>
+                          <option value="None">None (0%)</option>
+                          <option value="Partial">Partial (25%)</option>
+                          <option value="Half">Half (50%)</option>
+                          <option value="Full">Full (100%)</option>
                         </select>
                       </div>
 

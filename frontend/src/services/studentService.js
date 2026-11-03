@@ -73,7 +73,7 @@ const studentService = {
         donnees_contextuelles: {
           distance: parseFloat(data.donnees_contextuelles?.distance) || 0,
         },
-        type_sponsorship: data.type_sponsorship || 'Complète',
+        type_sponsorship: data.type_sponsorship || 'Full',
       };
       
       // Add diplôme data if provided (for Bac+2 and above)

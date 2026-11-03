@@ -351,11 +351,11 @@ async def ranger_etudiants_par_annee(year: int):
             
             # Recommended scholarship sponsorship tier
             if financial_need > 70:
-                recommended_sponsorship = "Complète"
+                recommended_sponsorship = "Full"
             elif financial_need > 40:
-                recommended_sponsorship = "Moitié"
+                recommended_sponsorship = "Half"
             else:
-                recommended_sponsorship = "Partielle"
+                recommended_sponsorship = "Partial"
             
             gpa_flat = student.get('gpa')
             revenu_flat = student.get('revenu', 0)
@@ -376,7 +376,7 @@ async def ranger_etudiants_par_annee(year: int):
                 "revenu": round(final_revenu, 2) if final_revenu else 0,
                 "dependants": int(final_dependants) if final_dependants else 0,
                 "distance": round(final_distance, 2) if final_distance else 0,
-                "type_sponsorship": student.get('type_sponsorship', 'Complète'),
+                "type_sponsorship": student.get('type_sponsorship', 'Full'),
                 "recommended_sponsorship": recommended_sponsorship,
                 "financial_need": round(financial_need, 2),
                 "priority_score": round(priority_score, 2),

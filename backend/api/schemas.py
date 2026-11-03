@@ -117,7 +117,7 @@ class InscriptionEtudiant(BaseModel):
     niveau_etude: Literal["Baccalauréat", "Bac+2", "Bac+3", "Bac+4"] = Field(..., description="Educational level attained")
     
     # Requested scholarship tier
-    type_sponsorship: Literal["Complète", "Partielle", "Moitié"] = Field(..., description="Requested scholarship sponsorship type")
+    type_sponsorship: Literal["Full", "Partial", "Half", "None", "Complète", "Partielle", "Moitié", "Aucune"] = Field("Full", description="Requested scholarship sponsorship type")
     
     # Baccalaureate records (mandatory for all candidates)
     donnees_baccalaureat: DonneesBaccalaureat
@@ -132,14 +132,15 @@ class InscriptionEtudiant(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "prenom": "Ahmed",
-                "nom": "Hassan",
-                "email": "ahmed@example.com",
+                "prenom": "Aarav",
+                "nom": "Sharma",
+                "email": "aarav.sharma@example.com",
                 "password": "secure_password_123",
-                "phone": "+212612345678",
-                "address": "Casablanca, Morocco",
-                "annee": 2024,
+                "phone": "+919876543210",
+                "address": "Hamirpur, Himachal Pradesh, India",
+                "annee": 2026,
                 "niveau_etude": "Baccalauréat",
+                "type_sponsorship": "Full",
                 "donnees_baccalaureat": {
                     "notes_regionales": 16.5,
                     "note_generale": 17.0,

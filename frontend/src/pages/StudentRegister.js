@@ -36,7 +36,7 @@ const StudentRegister = ({ onLogin }) => {
     distance: '',
     
     // Sponsorship Type
-    type_sponsorship: 'Complète', // 'Complète' | 'Partielle' | 'Moitié'
+    type_sponsorship: 'Full', // 'Full' | 'Partial' | 'Half' | 'None'
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -569,9 +569,10 @@ const StudentRegister = ({ onLogin }) => {
                       onChange={handleChange}
                       className="form-input"
                     >
-                      <option value="Complète">Full Sponsorship (100%)</option>
-                      <option value="Partielle">Partial Sponsorship</option>
-                      <option value="Moitié">Half Sponsorship (50%)</option>
+                      <option value="Full">Full Sponsorship (100%)</option>
+                      <option value="Partial">Partial Sponsorship (25%)</option>
+                      <option value="Half">Half Sponsorship (50%)</option>
+                      <option value="None">No Sponsorship (0%)</option>
                     </select>
                     {errors.type_sponsorship && <p className="text-red-600 text-sm mt-1">{errors.type_sponsorship}</p>}
                   </div>

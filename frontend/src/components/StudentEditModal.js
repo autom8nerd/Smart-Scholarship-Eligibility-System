@@ -22,7 +22,7 @@ export const StudentEditModal = ({
     revenu: '',
     dependants: '',
     distance: '',
-    type_sponsorship: 'Complète',
+    type_sponsorship: 'Full',
     statut: 'En attente'
   });
 
@@ -53,7 +53,7 @@ export const StudentEditModal = ({
         revenu: revenu ? parseFloat(revenu) : '',
         dependants: dependants ? parseInt(dependants) : '',
         distance: distance ? parseFloat(distance) : '',
-        type_sponsorship: student.type_sponsorship || 'Complète',
+        type_sponsorship: student.type_sponsorship || 'Full',
         statut: student.statut || 'En attente'
       });
     }
@@ -272,10 +272,10 @@ export const StudentEditModal = ({
                 className="form-input"
                 required
               >
-                <option value="Aucune">None (0%)</option>
-                <option value="Partielle">Partial</option>
-                <option value="Moitié">Half (50%)</option>
-                <option value="Complète">Full (100%)</option>
+                <option value="None">None (0%)</option>
+                <option value="Partial">Partial (25%)</option>
+                <option value="Half">Half (50%)</option>
+                <option value="Full">Full (100%)</option>
               </select>
             </div>
             <div>

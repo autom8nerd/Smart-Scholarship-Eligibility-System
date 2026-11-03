@@ -10,15 +10,15 @@ import os
 
 
 DONNEES_ETUDIANT_VALIDE = {
-    "prenom": "Ahmed",
-    "nom": "Hassan",
-    "email": "ahmed.hassan@example.com",
+    "prenom": "Aarav",
+    "nom": "Sharma",
+    "email": "aarav.sharma@example.com",
     "password": "motdepasse123",
-    "phone": "+212612345678",
-    "address": "Casablanca, Morocco",
+    "phone": "+919876543210",
+    "address": "Hamirpur, HP, India",
     "annee": 2026,
     "niveau_etude": "Baccalauréat",
-    "type_sponsorship": "Partielle",
+    "type_sponsorship": "Partial",
     "donnees_baccalaureat": {
         "notes_regionales": 16.5,
         "note_generale": 17.0,

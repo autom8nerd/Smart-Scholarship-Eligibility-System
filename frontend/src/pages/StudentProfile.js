@@ -74,8 +74,13 @@ const StudentProfile = ({ onLogout, user }) => {
 
   const calculatePercentage = (typeBourse) => {
     const percentages = {
+      'None': 0,
       'Aucune': 0,
+      'Partial': 25,
       'Partielle': 25,
+      'Half': 50,
+      'Moitié': 50,
+      'Full': 100,
       'Complète': 100
     };
     return percentages[typeBourse] || 0;
