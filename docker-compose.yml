@@ -1,0 +1,73 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: ancil_mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: ${NOM_BASE_DONNEES:-admission_intelligente}
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ancil_network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ancil_backend
+    restart: unless-stopped
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      - URL_MONGODB=mongodb://mongodb:27017
+      - NOM_BASE_DONNEES=${NOM_BASE_DONNEES:-admission_intelligente}
+      - HOTE_API=0.0.0.0
+      - PORT_API=8000
+      - ENVIRONNEMENT_FASTAPI=${ENVIRONNEMENT_FASTAPI:-production}
+      - NIVEAU_JOURNAL=${NIVEAU_JOURNAL:-INFO}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@ancil.ai}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-AdminPassword2026!}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-9f8c12a7d6e54b3c2108fae9b7d5c3a102487e6d5c4b3a210987654321fedcba}
+      - CORS_ORIGINES_SUPPLEMENTAIRES=${CORS_ORIGINES_SUPPLEMENTAIRES:-http://localhost:3000,http://127.0.0.1:3000,http://localhost:80,http://frontend:80}
+    ports:
+      - "${PORT_API:-8000}:8000"
+    volumes:
+      - model_cache:/app/modeles_entraines
+    networks:
+      - ancil_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL:-http://localhost:8000/api/v1}
+    container_name: ancil_frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    networks:
+      - ancil_network
+
+volumes:
+  mongodb_data:
+    name: ancil_mongodb_data
+  model_cache:
+    name: ancil_model_cache
+
+networks:
+  ancil_network:
+    name: ancil_network
+    driver: bridge
